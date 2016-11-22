@@ -22,9 +22,14 @@
 [Releses](https://github.com/yangbeom/BugsElectronPlayer/releases/tag/v1.0.0)
 에 들어가 해당 플랫폼에 맞는 압축파일을 받아 압축을 푼뒤 실행하면 됩니다.
 
+##이전 버전과 달라진점
+
+- MacOS 에서의 로그인 버튼이 스크롤 해야만 다 보이는 문제 해결
+- MacOS 에서의 아이콘 해결
+
 ###추가기능
 
-1.0.1버전에서는 다음과 같은 기능이 추가 되어있습니다.
+`1.0.2`버전에서는 다음과 같은 기능이 추가 되어있습니다.
 
 `MediaStartPauseKey` : 음악 재생 및 일시정지
 
