@@ -1,7 +1,7 @@
 {
     "name" : "BugsElectronPlayer",
     "productName": "BugsElectronPlayer",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "BugsElectronPlayer",
     "main": "/src/main.js",
     "scripts":{

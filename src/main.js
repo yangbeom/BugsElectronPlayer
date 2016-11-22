@@ -19,8 +19,8 @@ switch (process.platform){
 }
     app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, pluginName))
 function createWindow(){
-    var preference = {width: 385, 
-                      height: 672,
+    var preference = {width: 384, 
+                      height: 710,
                       resizable: false, //크기 변환 불가능
                       icon: path.join(__dirname, 'icon.png'),
                       webPreferences:{plugins: true}
