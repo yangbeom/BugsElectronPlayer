@@ -8,17 +8,24 @@ let pluginName
 let mainWindow
 let win
 let tray = null
-
-switch (process.platform){
-    case 'darwin':
-        pluginName = 'PepperFlashPlayer.plugin'
-        break
-    case 'linux':
-        pluginName = 'libpepflashplayerx86.so'
-        break
+app.commandLine.appendSwitch('--enable-npapi')
+try
+{
+    app.commandLine.appendSwitch('ppapi-flash-path',app.getPath('pepperFlashSystemPlugin'))
+    console.log("using system flashplayer")
 }
+catch(e)
+{
+    switch (process.platform){
+        case 'darwin':
+            pluginName = 'PepperFlashPlayer.plugin'
+            break
+        case 'linux':
+            pluginName = 'libpepflashplayerx86.so'
+            break
+    }
     app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, pluginName))
-
+}
 function createWindow(){
     var preference = {width: 385, 
                       height: 672,
