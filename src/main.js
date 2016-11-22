@@ -8,7 +8,7 @@ let pluginName
 let mainWindow
 let win
 let tray = null
-
+    
 switch (process.platform){
     case 'darwin':
         pluginName = 'PepperFlashPlayer.plugin'
@@ -18,7 +18,6 @@ switch (process.platform){
         break
 }
     app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, pluginName))
-
 function createWindow(){
     var preference = {width: 385, 
                       height: 672,
@@ -77,7 +76,7 @@ app.on('browser-window-created', (e, window) =>{
         nwindow.once('page-title-updated',(e, title) =>{
             if(title ==='로그인')
             {
-                nwindow.once('page-title-updated',(e, title) => {
+                nwindow.on('page-title-updated',(e, title) => {
                     if(title === '벅스')
                     {
                         mainWindow.reload()
