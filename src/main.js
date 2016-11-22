@@ -11,7 +11,7 @@ let tray = null
     
 switch (process.platform){
     case 'darwin':
-        pluginName = 'FlashPlayer.plugin'
+        pluginName = 'PepperFlashPlayer.plugin'
         break
     case 'linux':
         pluginName = 'libpepflashplayerx86.so'
