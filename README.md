@@ -8,7 +8,8 @@
 기본적으로 벅스 웹플레이어와 사용법은 같습니다.
 
 ##사용법
-###npm start를 이용한 사용법
+###npm start를 이용해 사용하는 방법
+
 ```
     $ git clone https://github.com/yangbeom/BugsElectronPlayer/
     $ cd BugsElectronPlayer
@@ -16,6 +17,10 @@
     $ npm start
 ```
 
+### 파일을 다운받아 사용하는 방법
+
+[Releses](https://github.com/yangbeom/BugsElectronPlayer/releases/tag/v1.0.0)
+에 들어가 해당 플랫폼에 맞는 압축파일을 받아 압축을 푼뒤 실행하면 됩니다.
 
 ###추가기능
 
