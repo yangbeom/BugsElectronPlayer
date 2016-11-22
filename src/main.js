@@ -8,15 +8,15 @@ let pluginName
 let mainWindow
 let win
 let tray = null
-app.commandLine.appendSwitch('--enable-npapi')
-    switch (process.platform){
-        case 'darwin':
-            pluginName = 'FlashPlayer.plugin'
-            break
-        case 'linux':
-            pluginName = 'libpepflashplayerx86.so'
-            break
-    }
+    
+switch (process.platform){
+    case 'darwin':
+        pluginName = 'FlashPlayer.plugin'
+        break
+    case 'linux':
+        pluginName = 'libpepflashplayerx86.so'
+        break
+}
     app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, pluginName))
 function createWindow(){
     var preference = {width: 385, 
