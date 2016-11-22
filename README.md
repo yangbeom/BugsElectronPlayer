@@ -19,8 +19,8 @@
 
 ### 파일을 다운받아 사용하는 방법
 
-[Releses](https://github.com/yangbeom/BugsElectronPlayer/releases/tag/v1.0.0)
-에 들어가 해당 플랫폼에 맞는 압축파일을 받아 압축을 푼뒤 실행하면 됩니다.
+[Releses](https://github.com/yangbeom/BugsElectronPlayer/releases/)
+에서 해당 플랫폼에 맞는 압축파일을 받아 압축을 푼뒤 실행하면 됩니다.
 
 ##이전 버전과 달라진점
 
