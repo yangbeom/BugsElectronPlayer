@@ -77,7 +77,7 @@ app.on('browser-window-created', (e, window) =>{
         nwindow.once('page-title-updated',(e, title) =>{
             if(title ==='로그인')
             {
-                nwindow.once('page-title-updated',(e, title) => {
+                nwindow.on('page-title-updated',(e, title) => {
                     if(title === '벅스')
                     {
                         mainWindow.reload()
