@@ -8,13 +8,16 @@ let pluginName
 let mainWindow
 let win
 let tray = null
-    
+let iconName
+
 switch (process.platform){
     case 'darwin':
         pluginName = 'PepperFlashPlayer.plugin'
+        iconName = 'icon.ico'
         break
     case 'linux':
         pluginName = 'libpepflashplayerx86.so'
+        iconName = 'icon.png'
         break
 }
     app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, pluginName))
@@ -22,7 +25,7 @@ function createWindow(){
     var preference = {width: 384, 
                       height: 710,
                       resizable: false, //크기 변환 불가능
-                      icon: path.join(__dirname, 'icon.png'),
+                      icon: path.join(__dirname, iconName),
                       webPreferences:{plugins: true}
                       }
 
