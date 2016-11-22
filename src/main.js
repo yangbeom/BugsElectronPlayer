@@ -13,7 +13,7 @@ let iconName
 switch (process.platform){
     case 'darwin':
         pluginName = 'PepperFlashPlayer.plugin'
-        iconName = 'icon.ico'
+        iconName = 'icon.icns'
         break
     case 'linux':
         pluginName = 'libpepflashplayerx86.so'
