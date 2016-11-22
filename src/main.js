@@ -9,25 +9,15 @@ let mainWindow
 let win
 let tray = null
 
-try{//설치된 flashplayer가 있다면 설치 되어 있는것을 사용
-    app.commandLine.appendSwitch('ppapi-flash-path', app.getPath('pepperFlashSystemPlugin'))
-    console.log("using system flashplayer")
+switch (process.platform){
+    case 'darwin':
+        pluginName = 'PepperFlashPlayer.plugin'
+        break
+    case 'linux':
+        pluginName = 'libpepflashplayerx86.so'
+        break
 }
-catch (e)// 그렇지 않다면 내장되어 있는 flashplayer사용
-{
-    switch (process.platform){
-        case 'win32':
-            pluginName = 'pepflashplayer.dll'
-            break
-        case 'darwin':
-            pluginName = 'PepperFlashPlayer.plugin'
-            break
-        case 'linux':
-            pluginName = 'libpepflashplayerx86.so'
-            break
-    }
     app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, pluginName))
-}
 
 function createWindow(){
     var preference = {width: 385, 
