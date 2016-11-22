@@ -18,7 +18,7 @@ catch(e)
 {
     switch (process.platform){
         case 'darwin':
-            pluginName = 'PepperFlashPlayer.plugin'
+            pluginName = 'FlashPlayer.plugin'
             break
         case 'linux':
             pluginName = 'libpepflashplayerx86.so'
