@@ -9,7 +9,7 @@
 기본적으로 벅스 웹플레이어와 사용법은 같습니다.
 
 ##사용법
-###npm start를 이용해 사용하는 방법
+###npm을 이용해 사용하는 방법
 
 ```
     $ git clone https://github.com/yangbeom/BugsElectronPlayer/
