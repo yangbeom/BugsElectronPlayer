@@ -1,0 +1,13 @@
+language: node_js
+
+node_js:
+    - "6"
+    - "node"
+
+before_install:
+    - npm install -g electron-pacakger
+      
+script:
+    - npm install
+    - npm start
+    - npm build
