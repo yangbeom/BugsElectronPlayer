@@ -5,7 +5,7 @@ node_js:
     - "node"
 
 before_install:
-    - npm install -g electron-pacakger
+    - npm install -g electron-packager
       
 script:
     - npm install
