@@ -1,5 +1,4 @@
 # BugsElectronPlayer
-![Build Status](https://travis-ci.org/yangbeom/BugsElectronPlayer.svg?branch=master)](https://travis-ci.org/yangbeom/BugsElectronPlayer)
 
 *BugsElectronPlayer*는 벅스 웹플레이어를
 [Electron](https://github.com/electron/electron) 에서 구동한 플레이어입니다.
