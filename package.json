@@ -7,7 +7,7 @@
     "scripts":{
         "start": "electron ./src/main.js",
         "build": "electron-packager . BugsEElectronPlayer --ignore='node_module' --platform=linux,darwin --icon='./src/icon.icns'",
-        "travis-ci": "xvfb-maybe electron ./src/main.js"
+        "test": "xvfb-maybe electron ./src/main.js"
     },
     "author": "yangbeom",
     "repository":{
