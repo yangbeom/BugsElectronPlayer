@@ -1,13 +1,12 @@
 {
     "name" : "BugsElectronPlayer",
     "productName": "BugsElectronPlayer",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "description": "BugsElectronPlayer",
     "main": "/src/main.js",
     "scripts":{
         "start": "electron ./src/main.js",
-        "build": "electron-packager . BugsEElectronPlayer --ignore='node_module' --platform=linux,darwin --icon='./src/icon.icns'",
-        "test": "electron ./src/main.js"
+        "build": "electron-packager . BugsElectronPlayer --ignore='node_module' --platform=linux,darwin --icon='./src/icon.icns'"
     },
     "author": "yangbeom",
     "repository":{

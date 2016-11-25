@@ -1,8 +1,10 @@
 const electron = require('electron')
 const path = require('path')
 const url = require('url')
+const fs = require('fs')
+var configs = require('./configs.json')
 
-const {app, BrowserWindow, globalShortcut} = electron
+const {app, BrowserWindow, globalShortcut, session} = electron
 
 let pluginName
 let mainWindow
@@ -20,7 +22,10 @@ switch (process.platform){
         iconName = 'icon.png'
         break
 }
-    app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, pluginName))
+app.commandLine.appendSwitch('ppapi-flash-path', 
+                             path.join(__dirname, pluginName))
+
+
 function createWindow(){
     var preference = {width: 384, 
                       height: 710,
@@ -32,44 +37,76 @@ function createWindow(){
     mainWindow = new BrowserWindow(preference)
     mainWindow.loadURL(`http://music.bugs.co.kr/newPlayer?autoplay=false`)
 
-//    mainWindow.webContents.openDevTools()
     mainWindow.show()
 }
 
-app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, pluginName))
+
 app.on('ready', () =>{
     createWindow()
     //shrotcut 전역 등록
     globalShortcut.register('MediaPlayPause',() =>{
         console.log("pressed MediaPlayPause Key")
-        mainWindow.webContents.executeJavaScript('if(document.getElementsByClassName("btnPlay")[0])\
-            {document.getElementsByClassName("btnPlay")[0].getElementsByTagName("button")[0].click()}\
-            else\
-            {document.getElementsByClassName("btnStop")[0].getElementsByTagName("button")[0].click()}')
+        mainWindow.webContents.executeJavaScript(
+                            'if(document.getElementsByClassName("btnPlay")[0])\
+                             {document.getElementsByClassName("btnPlay")[0].\
+                              getElementsByTagName("button")[0].click()}\
+                             else\
+                             {document.getElementsByClassName("btnStop")[0].\
+                              getElementsByTagName("button")[0].click()}')
     })
 
 
     globalShortcut.register('MediaNextTrack', () =>{
         console.log("pressed MediaNextTrack Key")
         mainWindow.webContents.executeJavaScript(
-            'document.getElementsByClassName("btnNext")[0].getElementsByTagName("button")[0].click()')
+                               'document.getElementsByClassName("btnNext")[0].\
+                                getElementsByTagName("button")[0].click()')
     })
 
     globalShortcut.register('MediaPreviousTrack', () =>{
         console.log("pressed MediaPreviousTrack Key")
         mainWindow.webContents.executeJavaScript(
-            'document.getElementsByClassName("btnPrev")[0].getElementsByTagName("button")[0].click()')
+                              'document.getElementsByClassName("btnPrev")[0].\
+                               getElementsByTagName("button")[0].click()')
+    })
+//마지막 스킨설정 세팅
+    session.defaultSession.cookies.set({url:'http://music.bugs.co.kr/', 
+                                        name:'playerSkin',
+                                        value: configs.playerSkin},
+                                        (error) => {console.log(error)}) 
+//마지막 볼륨 세팅
+    session.defaultSession.cookies.set({url:'http://music.bugs.co.kr/',
+                                        name: 'volume',
+                                        value: configs.volume},
+                                        (error) => {console.log(error)})
+//쿠키값 변경시 설정변경  
+    session.defaultSession.cookies.on('changed',
+        (event, cookie, cause, removed) => {
+            if(cookie.domain == 'music.bugs.co.kr')
+            {
+                if(cookie.name == 'volume')
+                {
+                    configs.volume =  cookie.value
+                }
+                else if(cookie.name == 'playerSkin')
+                {
+                    configs.playerSkin = cookie.value
+                }
+            }
     })
 })
 
+
 app.on('window-all-closed', function () {
-    if (process.platform !== 'darwin'){ app.quit()}
+    if (process.platform !== 'darwin'){app.quit()}
 })
+
 
 app.on('activate', function() {
     if (mainWindow === null) {
         createWindow}
 })
+
 
 //payco로그인시 창이 남는 것을 제거
 app.on('browser-window-created', (e, window) =>{
@@ -89,8 +126,13 @@ app.on('browser-window-created', (e, window) =>{
     }
 })
 
-//shortcut 등록 해제
-app.once('before-quit', () =>{
+
+//shortcut 등록 해제, settings값 저장
+app.once('will-quit', () =>{
+    fs.writeFile(path.join(__dirname,'configs.json'), 
+                 JSON.stringify(configs), 
+                 (error) => {console.log(error)})
+
     globalShortcut.unregisterAll()
 })
 
