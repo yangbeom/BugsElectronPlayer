@@ -1,6 +1,6 @@
 # BugsElectronPlayer
 
-*BugsElectronPlayer*는 벅스 웹플레이어를
+**BugsElectronPlayer**는 벅스 웹플레이어를
 [Electron](https://github.com/electron/electron) 에서 구동한 플레이어입니다.
 
 [벅스](http://www.bugs.co.kr)의 공식 플레이어가 아니며 벅스에서 요청시 언제든
@@ -25,12 +25,11 @@
 
 ##이전 버전과 달라진점
 
-- MacOS 에서의 로그인 버튼이 스크롤 해야만 다 보이는 문제 해결
-- MacOS 에서의 아이콘 해결
+- 실행시 마지막 스킨과 볼륨이 유지됩니다.
 
 ###추가기능
 
-`1.0.2`버전에서는 다음과 같은 기능이 추가 되어있습니다.
+`1.1.0`버전에서는 다음과 같은 기능이 추가 되어있습니다.
 
 `MediaStartPauseKey` : 음악 재생 및 일시정지
 
