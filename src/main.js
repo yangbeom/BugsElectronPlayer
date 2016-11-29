@@ -2,7 +2,7 @@ const electron = require('electron')
 const path = require('path')
 const url = require('url')
 const fs = require('fs')
-const keyBinding = require('./keyBinding.js')
+const keyBinding = require('./scripts.js')
 
 try
 {
@@ -54,16 +54,16 @@ app.on('ready', () =>{
     createWindow()
     //shrotcut 전역 등록
     globalShortcut.register('MediaPlayPause',() =>{
-        mainWindow.webContents.executeJavaScript(keyBinding.MPP)
+        mainWindow.webContents.executeJavaScript(scripts.MPP)
     })
 
 
     globalShortcut.register('MediaNextTrack', () =>{
-        mainWindow.webContents.executeJavaScript(keyBinding.MNT)
+        mainWindow.webContents.executeJavaScript(scripts.MNT)
     })
 
     globalShortcut.register('MediaPreviousTrack', () =>{
-        mainWindow.webContents.executeJavaScript(keyBinding.MPT)
+        mainWindow.webContents.executeJavaScript(scripts.MPT)
     })
 
     globalShortcut.register('Control+M', () =>{
