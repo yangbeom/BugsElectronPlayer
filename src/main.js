@@ -2,7 +2,17 @@ const electron = require('electron')
 const path = require('path')
 const url = require('url')
 const fs = require('fs')
-var configs = require('./configs.json')
+const keyBinding = require('./keyBinding.js')
+
+try
+{
+    var configs = require('./configs.json')
+}
+catch(e)
+{
+    var configs = {"volume": "50", "playerSkin": "white"}
+}
+
 
 const {app, BrowserWindow, globalShortcut, session} = electron
 
@@ -40,45 +50,34 @@ function createWindow(){
     mainWindow.show()
 }
 
-
 app.on('ready', () =>{
     createWindow()
     //shrotcut 전역 등록
     globalShortcut.register('MediaPlayPause',() =>{
-        console.log("pressed MediaPlayPause Key")
-        mainWindow.webContents.executeJavaScript(
-                            'if(document.getElementsByClassName("btnPlay")[0])\
-                             {document.getElementsByClassName("btnPlay")[0].\
-                              getElementsByTagName("button")[0].click()}\
-                             else\
-                             {document.getElementsByClassName("btnStop")[0].\
-                              getElementsByTagName("button")[0].click()}')
+        mainWindow.webContents.executeJavaScript(keyBinding.MPP)
     })
 
 
     globalShortcut.register('MediaNextTrack', () =>{
-        console.log("pressed MediaNextTrack Key")
-        mainWindow.webContents.executeJavaScript(
-                               'document.getElementsByClassName("btnNext")[0].\
-                                getElementsByTagName("button")[0].click()')
+        mainWindow.webContents.executeJavaScript(keyBinding.MNT)
     })
 
     globalShortcut.register('MediaPreviousTrack', () =>{
-        console.log("pressed MediaPreviousTrack Key")
-        mainWindow.webContents.executeJavaScript(
-                              'document.getElementsByClassName("btnPrev")[0].\
-                               getElementsByTagName("button")[0].click()')
+        mainWindow.webContents.executeJavaScript(keyBinding.MPT)
     })
+
+    globalShortcut.register('Control+M', () =>{
+        changePlayer()})
 //마지막 스킨설정 세팅
     session.defaultSession.cookies.set({url:'http://music.bugs.co.kr/', 
                                         name:'playerSkin',
                                         value: configs.playerSkin},
-                                        (error) => {console.log(error)}) 
+                                        (error) => {}) 
 //마지막 볼륨 세팅
     session.defaultSession.cookies.set({url:'http://music.bugs.co.kr/',
                                         name: 'volume',
                                         value: configs.volume},
-                                        (error) => {console.log(error)})
+                                        (error) => {})
 //쿠키값 변경시 설정변경  
     session.defaultSession.cookies.on('changed',
         (event, cookie, cause, removed) => {
@@ -131,7 +130,7 @@ app.on('browser-window-created', (e, window) =>{
 app.once('will-quit', () =>{
     fs.writeFile(path.join(__dirname,'configs.json'), 
                  JSON.stringify(configs), 
-                 (error) => {console.log(error)})
+                 (error) => {})
 
     globalShortcut.unregisterAll()
 })
