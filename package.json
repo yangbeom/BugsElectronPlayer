@@ -9,6 +9,8 @@
         "build": "electron-packager . BugsElectronPlayer --ignore='node_module' --platform=linux,darwin --icon='./src/icon.icns'"
     },
     "author": "yangbeom",
+    "bugs": {"url": "https://github.com/yangbeom/BugsElectronPlayer/issues",
+             "email": "yangbeomsu@gmail.com"},
     "repository":{
         "type": "git",
         "url": "https://github.com/yangbeom/BugsElectronPlayer"},
