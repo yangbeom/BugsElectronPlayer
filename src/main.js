@@ -2,7 +2,17 @@ const electron = require('electron')
 const path = require('path')
 const url = require('url')
 const fs = require('fs')
-var configs = require('./configs.json')
+const keyBinding = require('./keyBinding.js')
+
+try
+{
+    var configs = require('./configs.json')
+}
+catch(e)
+{
+    var configs = {"volume": "50", "playerSkin": "white"}
+}
+
 
 const {app, BrowserWindow, globalShortcut, session} = electron
 
@@ -11,6 +21,7 @@ let mainWindow
 let win
 let tray = null
 let iconName
+let miniPlayer
 
 switch (process.platform){
     case 'darwin':
@@ -40,35 +51,64 @@ function createWindow(){
     mainWindow.show()
 }
 
+function createMiniPlayer(){
+    var preference = {width: 384,
+                      height: 384,
+                      resizable: false,
+                      icon: path.join(__dirname, iconName),
+                      webPreferences:{plugins: true}
+    }
+    console.log(__dirname)
+    miniPlayer = new BrowserWindow(preference)
+    miniPlayer.loadURL('file://'+__dirname+'/miniPlayer.html')
+    miniPlayer.show()
+
+    miniPlayer.on('closed', () => {
+        if(mainWindow.isVisible())
+        {
+            console.log("main Window is Visible")
+        }
+        else
+        {
+            console.log("mainWindow is not Visible")
+            app.quit()
+        }
+    })
+}
+
+function changePlayer(){
+    if(mainWindow.isVisible())
+    {
+        mainWindow.hide()
+        createMiniPlayer()
+    }
+    else
+    {
+        mainWindow.show()
+        miniPlayer.close()
+    }
+}
 
 app.on('ready', () =>{
     createWindow()
     //shrotcut 전역 등록
     globalShortcut.register('MediaPlayPause',() =>{
-        console.log("pressed MediaPlayPause Key")
-        mainWindow.webContents.executeJavaScript(
-                            'if(document.getElementsByClassName("btnPlay")[0])\
-                             {document.getElementsByClassName("btnPlay")[0].\
-                              getElementsByTagName("button")[0].click()}\
-                             else\
-                             {document.getElementsByClassName("btnStop")[0].\
-                              getElementsByTagName("button")[0].click()}')
+        mainWindow.webContents.executeJavaScript(keyBinding.MPP)
     })
 
 
     globalShortcut.register('MediaNextTrack', () =>{
         console.log("pressed MediaNextTrack Key")
-        mainWindow.webContents.executeJavaScript(
-                               'document.getElementsByClassName("btnNext")[0].\
-                                getElementsByTagName("button")[0].click()')
+        mainWindow.webContents.executeJavaScript(keyBinding.MNT)
     })
 
     globalShortcut.register('MediaPreviousTrack', () =>{
         console.log("pressed MediaPreviousTrack Key")
-        mainWindow.webContents.executeJavaScript(
-                              'document.getElementsByClassName("btnPrev")[0].\
-                               getElementsByTagName("button")[0].click()')
+        mainWindow.webContents.executeJavaScript(keyBinding.MPT)
     })
+
+    globalShortcut.register('Control+M', () =>{
+        changePlayer()})
 //마지막 스킨설정 세팅
     session.defaultSession.cookies.set({url:'http://music.bugs.co.kr/', 
                                         name:'playerSkin',
