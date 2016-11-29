@@ -21,7 +21,6 @@ let mainWindow
 let win
 let tray = null
 let iconName
-let miniPlayer
 
 switch (process.platform){
     case 'darwin':
@@ -51,44 +50,6 @@ function createWindow(){
     mainWindow.show()
 }
 
-function createMiniPlayer(){
-    var preference = {width: 384,
-                      height: 384,
-                      resizable: false,
-                      icon: path.join(__dirname, iconName),
-                      webPreferences:{plugins: true}
-    }
-    console.log(__dirname)
-    miniPlayer = new BrowserWindow(preference)
-    miniPlayer.loadURL('file://'+__dirname+'/miniPlayer.html')
-    miniPlayer.show()
-
-    miniPlayer.on('closed', () => {
-        if(mainWindow.isVisible())
-        {
-            console.log("main Window is Visible")
-        }
-        else
-        {
-            console.log("mainWindow is not Visible")
-            app.quit()
-        }
-    })
-}
-
-function changePlayer(){
-    if(mainWindow.isVisible())
-    {
-        mainWindow.hide()
-        createMiniPlayer()
-    }
-    else
-    {
-        mainWindow.show()
-        miniPlayer.close()
-    }
-}
-
 app.on('ready', () =>{
     createWindow()
     //shrotcut 전역 등록
@@ -98,12 +59,10 @@ app.on('ready', () =>{
 
 
     globalShortcut.register('MediaNextTrack', () =>{
-        console.log("pressed MediaNextTrack Key")
         mainWindow.webContents.executeJavaScript(keyBinding.MNT)
     })
 
     globalShortcut.register('MediaPreviousTrack', () =>{
-        console.log("pressed MediaPreviousTrack Key")
         mainWindow.webContents.executeJavaScript(keyBinding.MPT)
     })
 
@@ -113,12 +72,12 @@ app.on('ready', () =>{
     session.defaultSession.cookies.set({url:'http://music.bugs.co.kr/', 
                                         name:'playerSkin',
                                         value: configs.playerSkin},
-                                        (error) => {console.log(error)}) 
+                                        (error) => {}) 
 //마지막 볼륨 세팅
     session.defaultSession.cookies.set({url:'http://music.bugs.co.kr/',
                                         name: 'volume',
                                         value: configs.volume},
-                                        (error) => {console.log(error)})
+                                        (error) => {})
 //쿠키값 변경시 설정변경  
     session.defaultSession.cookies.on('changed',
         (event, cookie, cause, removed) => {
@@ -171,7 +130,7 @@ app.on('browser-window-created', (e, window) =>{
 app.once('will-quit', () =>{
     fs.writeFile(path.join(__dirname,'configs.json'), 
                  JSON.stringify(configs), 
-                 (error) => {console.log(error)})
+                 (error) => {})
 
     globalShortcut.unregisterAll()
 })
