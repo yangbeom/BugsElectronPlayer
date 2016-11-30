@@ -65,9 +65,6 @@ app.on('ready', () =>{
     globalShortcut.register('MediaPreviousTrack', () =>{
         mainWindow.webContents.executeJavaScript(scripts.MPT)
     })
-
-    globalShortcut.register('Control+M', () =>{
-        changePlayer()})
 //마지막 스킨설정 세팅
     session.defaultSession.cookies.set({url:'http://music.bugs.co.kr/', 
                                         name:'playerSkin',
