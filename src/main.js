@@ -6,11 +6,11 @@ const keyBinding = require('./keyBinding.js')
 
 try
 {
-    var configs = require('./configs.json')
+    let configs = require('./configs.json')
 }
 catch(e)
 {
-    var configs = {"volume": "50", "playerSkin": "white"}
+    let configs = {"volume": "50", "playerSkin": "white"}
 }
 
 
