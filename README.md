@@ -8,6 +8,14 @@
 
 기본적으로 벅스 웹플레이어와 사용법은 같습니다.
 
+## 공지
+현재 취업준비중이라 업데이트가 늦을 수 있습니다.
+
+하지만 최소한 [Project](https://github.com/yangbeom/BugsElectronPlayer/projects)
+에 적혀 있는 것을 마무리 하고자 하니 더 원하시는 추가기능이나 버그등은
+[Issues](https://github.com/yangbeom/BugsElectronPlayer/issues)에 올려주시기
+바랍니다.
+
 ##사용법
 ###npm을 이용해 사용하는 방법
 
@@ -20,16 +28,16 @@
 
 ### 파일을 다운받아 사용하는 방법
 
-[Releses](https://github.com/yangbeom/BugsElectronPlayer/releases/)
+[Releases](https://github.com/yangbeom/BugsElectronPlayer/releases/)
 에서 해당 플랫폼에 맞는 압축파일을 받아 압축을 푼뒤 실행하면 됩니다.
 
 ##이전 버전과 달라진점
 
-- 실행시 마지막 스킨과 볼륨이 유지됩니다.
+- 정상적인 종료가 아닐시 다시 켜지지 않는 문제를 해결하였습니다.
 
 ###추가기능
 
-`1.1.0`버전에서는 다음과 같은 기능이 추가 되어있습니다.
+`v1.1.1`버전에서는 다음과 같은 기능이 추가 되어있습니다.
 
 `MediaStartPauseKey` : 음악 재생 및 일시정지
 
