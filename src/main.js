@@ -4,18 +4,9 @@ const url = require('url')
 const fs = require('fs')
 const keyBinding = require('./keyBinding.js')
 
-try
-{
-    let configs = require('./configs.json')
-}
-catch(e)
-{
-    let configs = {"volume": "50", "playerSkin": "white"}
-}
-
-
 const {app, BrowserWindow, globalShortcut, session} = electron
 
+let configs
 let pluginName
 let mainWindow
 let win
@@ -51,6 +42,15 @@ function createWindow(){
 }
 
 app.on('ready', () =>{
+    try
+    {
+        configs = require('./configs.json')
+    }
+    catch(e)
+    {
+        configs = {"volume": "50", "playerSkin": "white"}
+    }
+    console.log(configs)
     createWindow()
     //shrotcut 전역 등록
     globalShortcut.register('MediaPlayPause',() =>{
