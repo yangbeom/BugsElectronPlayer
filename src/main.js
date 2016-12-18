@@ -2,7 +2,7 @@ const electron = require('electron')
 const path = require('path')
 const url = require('url')
 const fs = require('fs')
-const keyBinding = require('./scripts.js')
+const scripts = require('./scripts.js')
 
 const {app, BrowserWindow, globalShortcut, session} = electron
 
@@ -12,6 +12,15 @@ let mainWindow
 let win
 let tray = null
 let iconName
+
+try
+{
+    configs = require('./configs.json')
+}
+catch(e)
+{
+    configs = {"volume": "50", "playerSkin": "white"}
+}
 
 switch (process.platform){
     case 'darwin':
@@ -42,14 +51,6 @@ function createWindow(){
 }
 
 app.on('ready', () =>{
-    try
-    {
-        configs = require('./configs.json')
-    }
-    catch(e)
-    {
-        configs = {"volume": "50", "playerSkin": "white"}
-    }
     console.log(configs)
     createWindow()
     //shrotcut 전역 등록
