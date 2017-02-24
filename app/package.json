@@ -3,18 +3,12 @@
     "productName": "BugsElectronPlayer",
     "version": "1.1.1",
     "description": "BugsElectronPlayer",
-    "main": "/src/main.js",
-    "scripts":{
-        "start": "electron ./src/main.js",
-        "build": "electron-packager . BugsElectronPlayer --ignore='node_module' --platform=linux,darwin --icon='./src/icon.icns'"
-    },
+    "main": "./main.js",
     "author": "yangbeom",
     "bugs": {"url": "https://github.com/yangbeom/BugsElectronPlayer/issues",
              "email": "yangbeomsu@gmail.com"},
     "repository":{
         "type": "git",
         "url": "https://github.com/yangbeom/BugsElectronPlayer"},
-    "license": "MIT",
-    "devDependencies":{
-        "electron": "^1.4.7"}
+    "license": "MIT"
 }
