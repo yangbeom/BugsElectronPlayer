@@ -25,11 +25,11 @@ catch(e)
 switch (process.platform){
     case 'darwin':
         pluginName = 'PepperFlashPlayer.plugin'
-        iconName = 'icon.icns'
+//        iconName = 'icon.icns'
         break
     case 'linux':
         pluginName = 'libpepflashplayerx86.so'
-        iconName = 'icon.png'
+//        iconName = 'icon.png'
         break
 }
 app.commandLine.appendSwitch('ppapi-flash-path', 

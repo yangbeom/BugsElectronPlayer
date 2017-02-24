@@ -1,20 +1,32 @@
 {
-    "name" : "BugsElectronPlayer",
+    "name": "BugsElectronPlayer",
     "productName": "BugsElectronPlayer",
     "version": "1.1.1",
     "description": "BugsElectronPlayer",
-    "main": "/src/main.js",
-    "scripts":{
-        "start": "electron ./src/main.js",
-        "build": "electron-packager . BugsElectronPlayer --ignore='node_module' --platform=linux,darwin --icon='./src/icon.icns'"
+    "main": "./app/main.js",
+    "scripts": {
+        "start": "electron ./app/main.js",
+        "build": "build -lm --x64 --ia32"
     },
     "author": "yangbeom",
-    "bugs": {"url": "https://github.com/yangbeom/BugsElectronPlayer/issues",
-             "email": "yangbeomsu@gmail.com"},
-    "repository":{
-        "type": "git",
-        "url": "https://github.com/yangbeom/BugsElectronPlayer"},
+    "bugs": {
+        "url": "https://github.com/yangbeom/BugsElectronPlayer/issues",
+        "email": "yangbeomsu@gmail.com"
+    },
+    "repository": "https://github.com/yangbeom/BugsElectronPlayer",
     "license": "MIT",
-    "devDependencies":{
-        "electron": "^1.4.7"}
+    "devDependencies": {
+        "electron": "^1.4.7",
+        "electron-builder": "^13.9.0"
+    },
+    "build": {
+        "appId": "BugsElectronPlayer",
+        "linux": {
+            "target": ["zip"],
+            "executeableName": "BugsElectronPlayer"
+        },
+        "mac":{
+            "target": ["zip"]
+        }
+    }
 }
