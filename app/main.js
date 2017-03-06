@@ -5,7 +5,7 @@ const fs = require('fs')
 const PlayerControl = require('./playercontrol.js')
 const scripts = require('./scripts.js')
 
-const {app, BrowserWindow, session} = electron
+const {app, ipcMain, BrowserWindow, session} = electron
 
 const playerControl = new PlayerControl(true)
 
@@ -40,7 +40,7 @@ app.commandLine.appendSwitch('ppapi-flash-path',
 function createWindow(){
     var preference = {width: 384, 
                       height: 710,
-                      resizable: false, //크기 변환 불가능
+                      resizable: true, //크기 변환 불가능
                       webPreferences:{plugins: true}
                       }
 
@@ -81,6 +81,41 @@ app.on('ready', () =>{
     playerControl.on('previous', () => {
         mainWindow.webContents.executeJavaScript(scripts.MPT);
     });
+
+    //IPC listener for metadata
+    ipcMain.on('metadata', (evt, data) => {
+        playerControl.updateMetadata(data);
+    });
+
+    //Execute metadata updater priodically
+    mainWindow.webContents.executeJavaScript(`
+let metadata = {};
+let ipc = require(\'electron\').ipcRenderer
+
+function mprisTime(timestamp) {
+    let ts = timestamp.split(':');
+    let sum = 0;
+    for(let i = 0; i < ts.length; i++) {
+        sum += Math.pow(60, ts.length - i - 1) * parseInt(ts[i]);
+    }
+
+    return sum * 1000 * 1000;
+};
+`);
+    setInterval(() => {
+        mainWindow.webContents.executeJavaScript(`
+metadata = {
+length: mprisTime($('em.finish')[0].innerText),
+albumart: $('img', $('div.thumbnail')[0])[0].src,
+title: $('.tracktitle', $('dl.trackInfo')[0].children)[0].innerText,
+album: $('.albumtitle', $('dl.trackInfo')[0].children)[0].innerText,
+artist: $('.artist', $('dl.trackInfo')[0].children)[0].innerText,
+status: $(".btnPlay button")[0] ? 'Paused' : 'Playing'
+};
+ipc.send('metadata', metadata);
+console.log(1);
+`);
+    }, 1000);
 
     //마지막 스킨설정 세팅
     session.defaultSession.cookies.set({url:'http://music.bugs.co.kr/', 

@@ -79,7 +79,18 @@ class PlayerControl extends EventEmitter {
     }
 
     updateMetadata(metadata) {
-        //
+        let mprismt = {
+            'mpris:length': metadata.length,
+            'mpris:artUrl': metadata.albumart,
+            'xesam:title': metadata.title,
+            'xesam:album': metadata.album,
+            'xesam:artist': metadata.artist
+        };
+
+        console.log(mprismt);
+
+        this._mpris.metadata = mprismt;
+        this._mpris.playbackStatus = metadata.status;
     }
 }
 
