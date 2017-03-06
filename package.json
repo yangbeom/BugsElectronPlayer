@@ -17,7 +17,8 @@
     "license": "MIT",
     "devDependencies": {
         "electron": "^1.4.7",
-        "electron-builder": "^13.9.0"
+        "electron-builder": "^13.9.0",
+        "electron-rebuild": "^1.5.7"
     },
     "build": {
         "appId": "BugsElectronPlayer",
@@ -35,5 +36,8 @@
     },
     "optionalDependencies": {
         "mpris-service": "^1.1.1"
+    },
+    "dependencies": {
+        "require-rebuild": "^1.2.8"
     }
 }
