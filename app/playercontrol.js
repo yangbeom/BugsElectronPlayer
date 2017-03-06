@@ -81,6 +81,11 @@ class PlayerControl extends EventEmitter {
     }
 
     updateMetadata(metadata) {
+        if (!this._useMPRIS) {
+            //Cannot update because MPRIS is not available.
+            return;
+        }
+
         let mprismt = {
             'mpris:length': metadata.length,
             'mpris:artUrl': metadata.albumart,
@@ -99,7 +104,7 @@ class PlayerControl extends EventEmitter {
             this._mpris.playbackStatus = metadata.status;
         }
 
-        this._mpris.position = metadata.position;
+        this._mpris.Position = metadata.position;
     }
 }
 
