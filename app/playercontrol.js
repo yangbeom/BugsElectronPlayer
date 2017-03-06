@@ -104,7 +104,8 @@ class PlayerControl extends EventEmitter {
             this._mpris.playbackStatus = metadata.status;
         }
 
-        this._mpris.Position = metadata.position;
+        this._mpris.position = metadata.position;
+        this._mpris.seeked(0); // Emit event
     }
 }
 
