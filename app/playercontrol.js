@@ -32,7 +32,7 @@ class PlayerControl extends EventEmitter {
             });
         }
 
-        this._mprismt = null;
+        this._metadata = null;
     }
 
     init() {
@@ -90,10 +90,10 @@ class PlayerControl extends EventEmitter {
         };
 
         //Quick N Dirty object comparison
-        if (JSON.stringify(this._mprismt) !== JSON.stringify(mprismt)) {
+        if (JSON.stringify(this._metadata) !== JSON.stringify(metadata)) {
             this._mpris.metadata = mprismt;
             this._mpris.playbackStatus = metadata.status;
-            this._mprismt = mprismt;
+            this._metadata = metadata;
         }
     }
 }
