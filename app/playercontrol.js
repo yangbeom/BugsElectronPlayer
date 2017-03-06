@@ -90,11 +90,16 @@ class PlayerControl extends EventEmitter {
         };
 
         //Quick N Dirty object comparison
-        if (JSON.stringify(this._metadata) !== JSON.stringify(metadata)) {
+        if (JSON.stringify(this._metadata) !== JSON.stringify(mprismt)) {
             this._mpris.metadata = mprismt;
-            this._mpris.playbackStatus = metadata.status;
-            this._metadata = metadata;
+            this._metadata = mprismt;
         }
+
+        if (this._mpris.playbackStatus !== metadata.status) {
+            this._mpris.playbackStatus = metadata.status;
+        }
+
+        this._mpris.position = metadata.position;
     }
 }
 

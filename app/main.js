@@ -106,6 +106,7 @@ function mprisTime(timestamp) {
         mainWindow.webContents.executeJavaScript(`
 metadata = {
 length: mprisTime($('em.finish')[0].innerText),
+position: mprisTime($('em.start')[0].innerText),
 albumart: $('img', $('div.thumbnail')[0])[0].src,
 title: $('.tracktitle', $('dl.trackInfo')[0].children)[0].innerText,
 album: $('.albumtitle', $('dl.trackInfo')[0].children)[0].innerText,
@@ -113,7 +114,6 @@ artist: $('.artist', $('dl.trackInfo')[0].children)[0].innerText,
 status: $(".btnPlay button")[0] ? 'Paused' : 'Playing'
 };
 ipc.send('metadata', metadata);
-console.log(1);
 `);
     }, 1000);
 
