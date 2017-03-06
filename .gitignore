@@ -2,6 +2,7 @@ node_modules/
 BugsElectronPlayer-*/
 note
 dist/
+app/configs.json
 
 # Emacs gitignore
 *~
