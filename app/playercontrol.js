@@ -31,6 +31,8 @@ class PlayerControl extends EventEmitter {
                 supportedInterfaces: ['player']
             });
         }
+
+        this._mprismt = null;
     }
 
     init() {
@@ -87,8 +89,12 @@ class PlayerControl extends EventEmitter {
             'xesam:artist': metadata.artist
         };
 
-        this._mpris.metadata = mprismt;
-        this._mpris.playbackStatus = metadata.status;
+        //Quick N Dirty object comparison
+        if (JSON.stringify(this._mprismt) !== JSON.stringify(mprismt)) {
+            this._mpris.metadata = mprismt;
+            this._mpris.playbackStatus = metadata.status;
+            this._mprismt = mprismt;
+        }
     }
 }
 
