@@ -87,8 +87,6 @@ class PlayerControl extends EventEmitter {
             'xesam:artist': metadata.artist
         };
 
-        console.log(mprismt);
-
         this._mpris.metadata = mprismt;
         this._mpris.playbackStatus = metadata.status;
     }
