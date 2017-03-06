@@ -2,9 +2,12 @@ const electron = require('electron')
 const path = require('path')
 const url = require('url')
 const fs = require('fs')
+const PlayerControl = require('./playercontrol.js')
 const scripts = require('./scripts.js')
 
-const {app, BrowserWindow, globalShortcut, session} = electron
+const {app, BrowserWindow, session} = electron
+
+const playerControl = new PlayerControl(true)
 
 let configs
 let pluginName
@@ -50,25 +53,41 @@ function createWindow(){
 app.on('ready', () =>{
     console.log(configs)
     createWindow()
-    //shrotcut 전역 등록
-    globalShortcut.register('MediaPlayPause',() =>{
-        mainWindow.webContents.executeJavaScript(scripts.MPP)
-    })
 
+    // Initialize player control.
+    playerControl.init();
 
-    globalShortcut.register('MediaNextTrack', () =>{
-        mainWindow.webContents.executeJavaScript(scripts.MNT)
-    })
+    playerControl.on('play', () => {
+        mainWindow.webContents.executeJavaScript(scripts.MP);
+    });
 
-    globalShortcut.register('MediaPreviousTrack', () =>{
-        mainWindow.webContents.executeJavaScript(scripts.MPT)
-    })
-//마지막 스킨설정 세팅
+    playerControl.on('pause', () => {
+        mainWindow.webContents.executeJavaScript(scripts.MS);
+    });
+
+    playerControl.on('stop', () => {
+        //TODO: Hack control to emulate 'real stop'
+        mainWindow.webContents.executeJavaScript(scripts.MS);
+    });
+
+    playerControl.on('playpause', () => {
+        mainWindow.webContents.executeJavaScript(scripts.MPP);
+    });
+
+    playerControl.on('next', () => {
+        mainWindow.webContents.executeJavaScript(scripts.MNT);
+    });
+
+    playerControl.on('previous', () => {
+        mainWindow.webContents.executeJavaScript(scripts.MPT);
+    });
+
+    //마지막 스킨설정 세팅
     session.defaultSession.cookies.set({url:'http://music.bugs.co.kr/', 
                                         name:'playerSkin',
                                         value: configs.playerSkin},
                                         (error) => {}) 
-//마지막 볼륨 세팅
+    //마지막 볼륨 세팅
     session.defaultSession.cookies.set({url:'http://music.bugs.co.kr/',
                                         name: 'volume',
                                         value: configs.volume},
@@ -127,6 +146,6 @@ app.once('will-quit', () =>{
                  JSON.stringify(configs), 
                  (error) => {})
 
-    globalShortcut.unregisterAll()
+    playerControl.cleanup();
 })
 
