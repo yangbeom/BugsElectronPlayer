@@ -291,6 +291,12 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
+dbus@^0.2.11:
+  version "0.2.23"
+  resolved "https://registry.yarnpkg.com/dbus/-/dbus-0.2.23.tgz#13764779ca3c081e75086d821636fc215bd9bc01"
+  dependencies:
+    nan "^2.1.0"
+
 debug@0.7.4:
   version "0.7.4"
   resolved "https://registry.yarnpkg.com/debug/-/debug-0.7.4.tgz#06e1ea8082c2cb14e39806e22e2f6f757f92af39"
@@ -914,9 +920,19 @@ mkdirp@^0.5.0, mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
+mpris-service@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/mpris-service/-/mpris-service-1.1.1.tgz#f6a8d1ff0ccf8db406d7e892091a7a694d0c04b6"
+  dependencies:
+    dbus "^0.2.11"
+
 ms@0.7.2:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.2.tgz#ae25cf2512b3885a1d95d7f037868d8431124765"
+
+nan@^2.1.0:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/nan/-/nan-2.5.1.tgz#d5b01691253326a97a2bbee9e61c55d8d60351e2"
 
 node-emoji@^1.5.1:
   version "1.5.1"

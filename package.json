@@ -22,11 +22,18 @@
     "build": {
         "appId": "BugsElectronPlayer",
         "linux": {
-            "target": ["zip"],
+            "target": [
+                "zip"
+            ],
             "executeableName": "BugsElectronPlayer"
         },
-        "mac":{
-            "target": ["zip"]
+        "mac": {
+            "target": [
+                "zip"
+            ]
         }
+    },
+    "optionalDependencies": {
+        "mpris-service": "^1.1.1"
     }
 }
