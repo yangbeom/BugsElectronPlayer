@@ -27,7 +27,7 @@ switch (process.platform){
         pluginName = 'pepperflash/PepperFlashPlayer.plugin'
         break
     case 'linux':
-        pluginName = 'pepperflash/libpepflashplayerx86.so'
+        pluginName = 'pepperflash/libpepflashplayer.so'
         break
 }
 app.commandLine.appendSwitch('ppapi-flash-path', 
