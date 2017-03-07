@@ -7,7 +7,7 @@ const scripts = require('./scripts.js')
 
 const {app, ipcMain, BrowserWindow, session} = electron
 
-const playerControl = new PlayerControl(true)
+let enableMPRIS = false;
 
 let configs
 let pluginName
@@ -31,8 +31,15 @@ switch (process.platform){
         break
     case 'linux':
         pluginName = 'pepperflash/libpepflashplayer.so'
+        enableMPRIS = true
         break
+    default:
+        //Maybe MS Windows?
+        console.error('Cannot load pepper flash for this platform.');
 }
+
+const playerControl = new PlayerControl(enableMPRIS);
+
 app.commandLine.appendSwitch('ppapi-flash-path', 
                              path.join(__dirname, pluginName))
 
