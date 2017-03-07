@@ -48,7 +48,7 @@ function createWindow(){
     var preference = {
         width: 384, 
         height: 710,
-        resizable: true, //크기 변환 불가능
+        resizable: false, //크기 변환 불가능
         webPreferences:{
             plugins: true,
             preload: path.join(__dirname, 'preload.js')
