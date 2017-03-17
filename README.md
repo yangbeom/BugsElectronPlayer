@@ -40,6 +40,8 @@
 
 `MediaPreviousTrackKey` : 이전 곡 재생
 
+`MPRIS` 지원
+
 ### 현재 알려진 문제점
 
 - 사용중인 dbus 모듈의 버그로 인하여 일부 linux에서 MPRIS가 작동이 되지 않아 
