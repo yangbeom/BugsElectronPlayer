@@ -8,22 +8,16 @@
 
 기본적으로 벅스 웹플레이어와 사용법은 같습니다.
 
-## 공지
-현재 취업준비중이라 업데이트가 늦을 수 있습니다.
 
-하지만 최소한 [Project](https://github.com/yangbeom/BugsElectronPlayer/projects)
-에 적혀 있는 것을 마무리 하고자 하니 더 원하시는 추가기능이나 버그등은
-[Issues](https://github.com/yangbeom/BugsElectronPlayer/issues)에 올려주시기
-바랍니다.
-
-##사용법
-###npm을 이용해 사용하는 방법
+## 사용법
+### yarn을 이용해 사용하는 방법
 
 ```
     $ git clone https://github.com/yangbeom/BugsElectronPlayer/
     $ cd BugsElectronPlayer
-    $ npm install
-    $ npm start
+    $ yarn install
+    $ yarn dbus
+    $ yarn start
 ```
 
 ### 파일을 다운받아 사용하는 방법
@@ -31,13 +25,14 @@
 [Releases](https://github.com/yangbeom/BugsElectronPlayer/releases/)
 에서 해당 플랫폼에 맞는 압축파일을 받아 압축을 푼뒤 실행하면 됩니다.
 
-##이전 버전과 달라진점
+## 이전 버전과 달라진점
 
-- 정상적인 종료가 아닐시 다시 켜지지 않는 문제를 해결하였습니다.
+- [@perillamint](https://github.com/perillamint) 님께서 MPRIS 지원을 추가해
+주셨습니다.
 
-###추가기능
+## 추가기능
 
-`v1.1.1`버전에서는 다음과 같은 기능이 추가 되어있습니다.
+`v1.2.0`버전에서는 다음과 같은 기능이 추가 되어있습니다.
 
 `MediaStartPauseKey` : 음악 재생 및 일시정지
 
@@ -45,17 +40,21 @@
 
 `MediaPreviousTrackKey` : 이전 곡 재생
 
-###현재 알려진 문제점
+### 현재 알려진 문제점
 
-- linux에서 시스템에 해당 shortcut이 등록되어 있으면 우선순위에 밀려 shortcut이
-작동 하지 않습니다.
+- 사용중인 dbus 모듈의 버그로 인하여 일부 linux에서 MPRIS가 작동이 되지 않아 
+이전 버전의 문제였던 시스템에 해당 shortcut이 등록되어 있으면 우선순위에 밀려 
+shortcut이 작동 하지 않습니다.
 
-##License
+## BugsElectronPlayer와 함께해 주시는 분들
+- [@perillamint](https://github.com/perillamint)
+
+## License
 
 [MIT](./LICENSES/LICENSE)
 
-###[Electron](https://github.com/electron/electron)
+### [Electron](https://github.com/electron/electron)
 [MIT](./LICENSES/ElectronLicense)
 
-###AdobeFlashPlayer
+### AdobeFlashPlayer
 [LGPL](./LICENSES/AdobeFlashPlayerLicense)
