@@ -23,6 +23,7 @@
     },
     "build": {
         "appId": "BugsElectronPlayer",
+        "asar": false,
         "linux": {
             "target": [
                 "zip"
