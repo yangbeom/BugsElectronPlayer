@@ -2,9 +2,12 @@ const electron = require('electron')
 const path = require('path')
 const url = require('url')
 const fs = require('fs')
+const PlayerControl = require('./playercontrol.js')
 const scripts = require('./scripts.js')
 
-const {app, BrowserWindow, globalShortcut, session} = electron
+const {app, ipcMain, BrowserWindow, session} = electron
+
+let enableMPRIS = false;
 
 let configs
 let pluginName
@@ -24,22 +27,33 @@ catch(e)
 
 switch (process.platform){
     case 'darwin':
-        pluginName = 'PepperFlashPlayer.plugin'
+        pluginName = 'pepperflash/PepperFlashPlayer.plugin'
         break
     case 'linux':
-        pluginName = 'libpepflashplayerx86.so'
+        pluginName = 'pepperflash/libpepflashplayer.so'
+        enableMPRIS = true
         break
+    default:
+        //Maybe MS Windows?
+        console.error('Cannot load pepper flash for this platform.');
 }
+
+const playerControl = new PlayerControl(enableMPRIS);
+
 app.commandLine.appendSwitch('ppapi-flash-path', 
                              path.join(__dirname, pluginName))
 
 
 function createWindow(){
-    var preference = {width: 384, 
-                      height: 710,
-                      resizable: false, //크기 변환 불가능
-                      webPreferences:{plugins: true}
-                      }
+    var preference = {
+        width: 384, 
+        height: 710,
+        resizable: false, //크기 변환 불가능
+        webPreferences:{
+            plugins: true,
+            preload: path.join(__dirname, 'preload.js')
+        }
+    }
 
     mainWindow = new BrowserWindow(preference)
     mainWindow.loadURL('http://music.bugs.co.kr/newPlayer?autoplay=false')
@@ -50,25 +64,46 @@ function createWindow(){
 app.on('ready', () =>{
     console.log(configs)
     createWindow()
-    //shrotcut 전역 등록
-    globalShortcut.register('MediaPlayPause',() =>{
-        mainWindow.webContents.executeJavaScript(scripts.MPP)
-    })
 
+    // Initialize player control.
+    playerControl.init();
 
-    globalShortcut.register('MediaNextTrack', () =>{
-        mainWindow.webContents.executeJavaScript(scripts.MNT)
-    })
+    playerControl.on('play', () => {
+        mainWindow.webContents.executeJavaScript(scripts.MP);
+    });
 
-    globalShortcut.register('MediaPreviousTrack', () =>{
-        mainWindow.webContents.executeJavaScript(scripts.MPT)
-    })
-//마지막 스킨설정 세팅
+    playerControl.on('pause', () => {
+        mainWindow.webContents.executeJavaScript(scripts.MS);
+    });
+
+    playerControl.on('stop', () => {
+        //TODO: Hack control to emulate 'real stop'
+        mainWindow.webContents.executeJavaScript(scripts.MS);
+    });
+
+    playerControl.on('playpause', () => {
+        mainWindow.webContents.executeJavaScript(scripts.MPP);
+    });
+
+    playerControl.on('next', () => {
+        mainWindow.webContents.executeJavaScript(scripts.MNT);
+    });
+
+    playerControl.on('previous', () => {
+        mainWindow.webContents.executeJavaScript(scripts.MPT);
+    });
+
+    //IPC listener for metadata
+    ipcMain.on('metadata', (evt, data) => {
+        playerControl.updateMetadata(data);
+    });
+
+    //마지막 스킨설정 세팅
     session.defaultSession.cookies.set({url:'http://music.bugs.co.kr/', 
                                         name:'playerSkin',
                                         value: configs.playerSkin},
                                         (error) => {}) 
-//마지막 볼륨 세팅
+    //마지막 볼륨 세팅
     session.defaultSession.cookies.set({url:'http://music.bugs.co.kr/',
                                         name: 'volume',
                                         value: configs.volume},
@@ -127,6 +162,6 @@ app.once('will-quit', () =>{
                  JSON.stringify(configs), 
                  (error) => {})
 
-    globalShortcut.unregisterAll()
+    playerControl.cleanup();
 })
 
