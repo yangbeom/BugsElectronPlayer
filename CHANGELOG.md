@@ -1,4 +1,8 @@
 #CHANGELOG
+## v1.2.1
+
+- app 에 빠져있던 dependencies를 추가하였습니다.
+
 ## v1.2.0
 
 - [@perillamint](https://github.com/perillamint) 님께서 MPRIS 지원을 추가해 주셨습니다.

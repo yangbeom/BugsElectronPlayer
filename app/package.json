@@ -1,7 +1,7 @@
 {
     "name" : "BugsElectronPlayer",
     "productName": "BugsElectronPlayer",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "BugsElectronPlayer",
     "main": "./main.js",
     "author": "yangbeom",
@@ -10,5 +10,11 @@
     "repository":{
         "type": "git",
         "url": "https://github.com/yangbeom/BugsElectronPlayer"},
-    "license": "MIT"
+    "license": "MIT",
+    "optionalDependencies": {
+        "mpris-service": "^1.1.1"
+    },
+    "dependencies": {
+        "require-rebuild": "^1.2.8"
+    }
 }
