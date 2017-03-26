@@ -1,4 +1,8 @@
 #CHANGELOG
+## v1.2.2
+
+- 처음 실행하는 환경에서 linux버전의 icon이 없던 환경을 변경하였습니다.
+
 ## v1.2.1
 
 - app 에 빠져있던 dependencies를 추가하였습니다.
