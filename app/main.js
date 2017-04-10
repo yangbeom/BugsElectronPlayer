@@ -146,7 +146,7 @@ app.on('browser-window-created', (e, window) =>{
             if(title ==='로그인')
             {
                 nwindow.on('page-title-updated',(e, title) => {
-                    if(title === '벅스')
+                    if(title === '벅스 음악 플레이어!')
                     {
                         mainWindow.reload()
                     }
