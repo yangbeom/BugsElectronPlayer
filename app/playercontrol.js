@@ -27,7 +27,7 @@ class PlayerControl extends EventEmitter {
         if (this._useMPRIS) {
             this._mpris = new MPRIS({
                 name: 'Bugs',
-                identity: 'Bugs! Electron',
+                identity: 'Bugs! Electron Player',
                 supportedInterfaces: ['player']
             });
         }
