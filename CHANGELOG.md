@@ -1,4 +1,8 @@
 #CHANGELOG
+## v1.2.3
+
+- [Issue#28](https://github.com/yangbeom/BugsElectronPlayer/issues/28) 수정
+
 ## v1.2.2
 
 - 처음 실행하는 환경에서 linux버전의 icon이 없던 현상을 수정했습니다.
