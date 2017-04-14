@@ -1,7 +1,7 @@
 {
     "name" : "BugsElectronPlayer",
     "productName": "BugsElectronPlayer",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "description": "BugsElectronPlayer",
     "main": "./main.js",
     "author": "yangbeom",
