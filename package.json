@@ -37,10 +37,6 @@
             ]
         }
     },
-    "optionalDependencies": {
-        "mpris-service": "^1.1.1"
-    },
-    "dependencies": {
-        "require-rebuild": "^1.2.8"
-    }
+    "optionalDependencies": {},
+    "dependencies": {}
 }
