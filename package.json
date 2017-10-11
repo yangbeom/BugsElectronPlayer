@@ -28,7 +28,7 @@
             "target": [
                 "dir"
             ],
-            "executeableName": "BugsElectronPlayer",
+            "executableName": "BugsElectronPlayer",
             "icon": "./build/120x120.png"
         },
         "mac": {
