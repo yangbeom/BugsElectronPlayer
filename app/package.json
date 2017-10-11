@@ -4,7 +4,7 @@
     "version": "1.2.3",
     "description": "BugsElectronPlayer",
     "main": "./main.js",
-    "author": "yangbeom",
+    "author": "yangbeom, <yangbeomsu@gmail.com>",
     "bugs": {"url": "https://github.com/yangbeom/BugsElectronPlayer/issues",
              "email": "yangbeomsu@gmail.com"},
     "repository":{
