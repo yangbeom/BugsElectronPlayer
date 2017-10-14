@@ -1,7 +1,7 @@
 {
     "name": "BugsElectronPlayer",
     "productName": "BugsElectronPlayer",
-    "version": "1.2.3",
+    "version": "1.2.4",
     "description": "BugsElectronPlayer",
     "main": "./app/main.js",
     "scripts": {
@@ -17,7 +17,7 @@
     "repository": "https://github.com/yangbeom/BugsElectronPlayer",
     "license": "MIT",
     "devDependencies": {
-        "electron": "^1.4.7",
+        "electron": "^1.7.9",
         "electron-builder": "^13.9.0",
         "electron-rebuild": "^1.5.7"
     },

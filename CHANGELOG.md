@@ -1,4 +1,9 @@
 #CHANGELOG
+## v1.2.4
+
+- [Issue#29](https://github.com/yangbeom/BugsElectronPlayer/issues/29) 수정
+- [@anesin1109](https://github.com/anesin1109)님이 오탈자를 수정 해 주셨습니다.
+
 ## v1.2.3
 
 - [Issue#28](https://github.com/yangbeom/BugsElectronPlayer/issues/28) 수정
