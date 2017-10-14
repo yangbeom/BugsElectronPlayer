@@ -27,7 +27,8 @@
 
 ## 이전 버전과 달라진점
 
-- [Issue#28](https://github.com/yangbeom/BugsElectronPlayer/issues/28) 수정
+- [Issue#29](https://github.com/yangbeom/BugsElectronPlayer/issues/29) 수정
+- [@anesin1109](https://github.com/anesin1109)님이 오탈자를 수정 해 주셨습니다.
 
 ## 추가기능
 
@@ -43,12 +44,16 @@
 
 ### 현재 알려진 문제점
 
-- 사용중인 dbus 모듈의 버그로 인하여 일부 linux에서 MPRIS가 작동이 되지 않아 
-이전 버전의 문제였던 시스템에 해당 shortcut이 등록되어 있으면 우선순위에 밀려 
+- 사용중인 dbus 모듈의 버그로 인하여 일부 linux에서 MPRIS가 작동이 되지 않아
+이전 버전의 문제였던 시스템에 해당 shortcut이 등록되어 있으면 우선순위에 밀려
 shortcut이 작동 하지 않습니다.
+
+- MacOS 에서의 capslock을 이용한 input method change 기능이 정상 작동 하지
+    않을 수 있습니다.
 
 ## BugsElectronPlayer와 함께해 주시는 분들
 - [@perillamint](https://github.com/perillamint)
+- [@anesin1109](https://github.com/anesin1109)
 
 ## License
 
