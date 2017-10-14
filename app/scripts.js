@@ -1,7 +1,7 @@
 module.exports = {
-    MP: 'if($(".btnPlay button")[0]){$(".btnPlay button").trigger("click")}',
-    MS: 'if($(".btnStop button")[0]){$(".btnStop button").trigger("click")}',
-    MPP: 'if($(".btnPlay button")[0]){$(".btnPlay button").trigger("click")}else{$(".btnStop button").trigger("click")}',
-    MNT: '$(".btnNext button").trigger("click")',
-    MPT: '$(".btnPrev button").trigger("click")'
+    MP: 'document.getElementsByClassName("btnPlay")[0].getElementsByTagName("button")[0].click()',
+    MS: 'document.getElementsByClassName("btnStop")[0].getElementsByTagName("button")[0].click()',
+    MPP: 'if(document.getElementsByClassName("btnPlay")[0]){document.getElementsByClassName("btnPlay")[0].getElementsByTagName("button")[0].click()}else{document.getElementsByClassName("btnStop")[0].getElementsByTagName("button")[0].click()}',
+    MNT: 'document.getElementsByClassName("btnNext")[0].getElementsByTagName("button")[0].click()',
+    MPT: 'document.getElementsByClassName("btnPrev")[0].getElementsByTagName("button")[0].click()'
 }
