@@ -26,10 +26,11 @@
         "asar": false,
         "linux": {
             "target": [
-                "dir"
+                "dir",
+                "deb"
             ],
             "executableName": "BugsElectronPlayer",
-            "icon": "./build/120x120.png"
+            "icon": "./build/icons"
         },
         "mac": {
             "target": [
