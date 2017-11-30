@@ -1,5 +1,7 @@
 # BugsElectronPlayer
 
+![Downloads](https://img.shields.io/github/downloads/yangbeom/BugsElectronPlayer/total.svg?style=flat-square)
+
 **BugsElectronPlayer**는 벅스 웹플레이어를
 [Electron](https://github.com/electron/electron) 에서 구동한 플레이어입니다.
 
