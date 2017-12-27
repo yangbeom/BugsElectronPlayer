@@ -1,4 +1,8 @@
 #CHANGELOG
+## v1.3.0
+
+- 기존 플래시를 이용하던 버전에서 html5를 이용하는 버전으로 바뀌었습니다.
+
 ## v1.2.4
 
 - [Issue#29](https://github.com/yangbeom/BugsElectronPlayer/issues/29) 수정
