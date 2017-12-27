@@ -3,6 +3,7 @@ BugsElectronPlayer-*/
 note
 dist/
 app/configs.json
+package-lock.json
 
 # Emacs gitignore
 *~
