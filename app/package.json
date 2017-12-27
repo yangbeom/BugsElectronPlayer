@@ -1,15 +1,18 @@
 {
-    "name" : "BugsElectronPlayer",
+    "name": "BugsElectronPlayer",
     "productName": "BugsElectronPlayer",
-    "version": "1.2.4",
+    "version": "1.3.0",
     "description": "BugsElectronPlayer",
     "main": "./main.js",
     "author": "yangbeom",
-    "bugs": {"url": "https://github.com/yangbeom/BugsElectronPlayer/issues",
-             "email": "yangbeomsu@gmail.com"},
-    "repository":{
+    "bugs": {
+        "url": "https://github.com/yangbeom/BugsElectronPlayer/issues",
+        "email": "yangbeomsu@gmail.com"
+    },
+    "repository": {
         "type": "git",
-        "url": "https://github.com/yangbeom/BugsElectronPlayer"},
+        "url": "https://github.com/yangbeom/BugsElectronPlayer"
+    },
     "license": "MIT",
     "optionalDependencies": {
         "mpris-service": "^1.1.1"

@@ -29,12 +29,11 @@
 
 ## 이전 버전과 달라진점
 
-- [Issue#29](https://github.com/yangbeom/BugsElectronPlayer/issues/29) 수정
-- [@anesin1109](https://github.com/anesin1109)님이 오탈자를 수정 해 주셨습니다.
+- 기존 플래시를 이용하던 버전에서 html5를 이용하는 버전으로 바뀌었습니다.
 
 ## 추가기능
 
-`v1.2.4`버전에서는 다음과 같은 기능이 추가 되어있습니다.
+`v1.3.0`버전에서는 다음과 같은 기능이 추가 되어있습니다.
 
 `MediaStartPauseKey` : 음악 재생 및 일시정지
 
@@ -50,7 +49,7 @@
 이전 버전의 문제였던 시스템에 해당 shortcut이 등록되어 있으면 우선순위에 밀려
 shortcut이 작동 하지 않습니다.
 
-- MacOS 에서의 capslock을 이용한 input method change 기능이 정상 작동 하지
+- MacOS Siera 에서 capslock을 이용한 input method change 기능이 정상 작동 하지
     않을 수 있습니다.
 
 ## BugsElectronPlayer와 함께해 주시는 분들
